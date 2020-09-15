@@ -2,9 +2,11 @@ from random import random
 
 def draw_lake(numFish=3):
   # Make sure user didn't put in a number that was too high
-  numFish = 8 if numFish > 8 else numFish
+  if numFish > 8:
+    raise ValueError("There can be at max 8 fish in the pond")
   # Same for too low
-  numFish = 0 if numFish < 0 else numFish
+  if numFish < 0:
+    raise ValueError("There cannot be a negative number of fish in the pond")
   
   total_fish = 8
   fish = []
