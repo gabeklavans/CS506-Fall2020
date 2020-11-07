@@ -10,9 +10,9 @@ y_true = pd.merge(train, y_id, left_on='Id', right_on='Id')
 y_predict = y_predict['Score']
 y_true = y_true['Score']
 
-print(y_predict.shape)
-print(y_true.shape)
+# print(y_predict.shape)
+# print(y_true.shape)
 
 rmse = mean_squared_error(y_true, y_predict, squared=False)
 
-print(rmse)
+print("Root mean squared error: ", rmse)

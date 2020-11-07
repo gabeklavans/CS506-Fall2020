@@ -6,6 +6,9 @@ from sklearn.datasets import fetch_20newsgroups
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.stem.snowball import SnowballStemmer
 from nltk.tokenize import word_tokenize, sent_tokenize
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
 
 categories = ['comp.os.ms-windows.misc', 'sci.space','rec.sport.baseball']
 news_data = fetch_20newsgroups(subset='train', categories=categories)
@@ -15,9 +18,10 @@ stemmed_data = [" ".join(SnowballStemmer("english", ignore_stopwords=True).stem(
          for sent in sent_tokenize(message)
         for word in word_tokenize(sent))
         for message in news_data.data]
-
+print(stemmed_data)
 dtm = vectorizer.fit_transform(stemmed_data)
 terms = vectorizer.get_feature_names()
+print(terms)
 centered_dtm = dtm - np.mean(dtm, axis=0)
 
 u, s, vt = np.linalg.svd(centered_dtm)

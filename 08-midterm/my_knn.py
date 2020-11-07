@@ -25,7 +25,7 @@ x_train_features['ProductId'] = le.fit_transform(pd.DataFrame(x_train_features['
 x_test_features['ProductId'] = le.fit_transform(pd.DataFrame(x_test_features['ProductId']))
 x_predict['ProductId'] = le.fit_transform(pd.DataFrame(x_predict['ProductId']))
 
-model = KNeighborsClassifier(n_neighbors=3).fit(x_train_features, y_train.values.flatten())
+model = KNeighborsClassifier(n_neighbors=4).fit(x_train_features, y_train.values.flatten())
 predictionSet['Score'] = model.predict(x_predict)
 x_test['Score'] = model.predict(x_test_features)
 x_test = x_test.sort_values(by=['Id'])
